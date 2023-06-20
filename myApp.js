@@ -1,7 +1,10 @@
-require('dotenv').config()
+require('dotenv').config();
 let express = require('express');
 let app = express();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -41,8 +44,10 @@ app.get('/name', (req, res) => {
     res.json({ name: `${firstName} ${lastName}` });
 });
 
-
-
+app.post('/name', (req, res) => {
+    let { first: firstName, last: lastName } = req.body;
+    res.json({ name: `${firstName} ${lastName}` });
+});
 
 
 
