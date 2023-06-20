@@ -29,9 +29,17 @@ app.get('/json', (req, res) => {
     }
 });
 
+app.get('/:word/echo', (req, res) => {
+    const { word } = req.params;
+    res.json({
+        echo: word
+    });
+});
 
-
-
+app.get('/name', (req, res) => {
+    let { first: firstName, last: lastName } = req.query;
+    res.json({ name: `${firstName} ${lastName}` });
+});
 
 
 
